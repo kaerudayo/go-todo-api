@@ -128,6 +128,28 @@ func main() {
 
     // stringへのポインタである*string型の値(hogeに格納されている値)を書き換えたので、hogeの値も変更される。
     fmt.Printf("*namePointに二郎を代入後のhoge :%v\n", hoge)
+
+    /**
+     * class的な。goでは　typeで表現する
+     */
+     taiyakikun1gou := &Taiyaki{}
+      taiyakikun1gou.Atama()
+      taiyakikun1gou.Shippo()
+  
+      taiyakikun2gou := &Taiyaki{}
+      taiyakikun2gou.Atama()
+      taiyakikun2gou.Shippo()
+}
+
+type Taiyaki struct{}
+
+func (t Taiyaki) Atama() {
+  fmt.Println("たい焼きの頭の方にはあんこがいっぱい入っている")
+}
+
+func (t Taiyaki) Shippo() {
+  fmt.Println("たい焼きの尻尾にはあんこがほとんど入っていない")
+  fmt.Println("しかしカリカリしていて美味しい")
 }
 
 func doError() error { return errors.New("これはerrorだ") }
