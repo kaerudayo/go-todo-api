@@ -4,7 +4,6 @@ package main
 import (
   "fmt"
   "errors"
-  "os"
 )
 
 type (
@@ -30,6 +29,7 @@ func main() {
     namev2 string = ""
     agev2  int    = 1
   )
+
   // namev2,agev2 = "kaoru", 24
 
   // セミコロンは基本書かなくていいけど、人によっては1行でさっと書きたいときは使いそう
@@ -90,12 +90,51 @@ func main() {
     */
     if err := doError(); err != nil {
       fmt.Println("err", err)
-      os.Exit(1)
+    } else {
       fmt.Println("終わりだよ～") // ここにはこない
     }
+
+    fmt.Println(multiRes(1,2))
+
+    for i := 0; i < 10; i ++ {
+      fmt.Println(i)
+    }
+
+    lang := "Go"
+
+    if lang == "Go" {
+      fmt.Println(lang)
+    }
+
+    // ポインタについて。この記事が分かりやすかった https://qiita.com/Sekky0905/items/447efa04a95e3fec217f
+    hoge := "太郎"
+    fmt.Printf("hoge :%v\n", hoge)
+
+    hogePoint := &hoge
+
+    // namePointは、&hogeが格納されているだけなので、stringへのポインタである*string型の値が格納されている。
+    fmt.Printf("namePoint :%v\n", hogePoint)
+
+    // namePointが指している変数は、"*namePoint"という感じで、"*"をつけて表す。
+    fmt.Printf("namePoint :%v\n", *hogePoint)
+
+    *hogePoint = "二郎"
+
+    // *namePointに値を代入することもできる。
+    fmt.Printf("*namePointに二郎を代入後の*namePoint :%v\n", *hogePoint)
+
+    // 再代入したところで、namePointに格納されている*string型の値(アドレス)自体は、変わらない
+    fmt.Printf("*namePointに二郎を代入後のnamePoint :%v\n", hogePoint)
+
+    // stringへのポインタである*string型の値(hogeに格納されている値)を書き換えたので、hogeの値も変更される。
+    fmt.Printf("*namePointに二郎を代入後のhoge :%v\n", hoge)
 }
 
 func doError() error { return errors.New("これはerrorだ") }
+
+func multiRes(a,b int) (int, int) {
+  return a,b
+}
 
 func typeCheck(uid UserId) { // voidは書かなくても良さそう
   fmt.Println(uid)
