@@ -1,9 +1,9 @@
-
 package main
 
 import (
-  "fmt"
-  "errors"
+	"errors"
+	"fmt"
+	"time"
 )
 
 type (
@@ -139,6 +139,7 @@ func main() {
       taiyakikun2gou := &Taiyaki{}
       taiyakikun2gou.Atama()
       taiyakikun2gou.Shippo()
+      fmt.Print(time.Now())
 }
 
 type Taiyaki struct{}
