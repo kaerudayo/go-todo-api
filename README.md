@@ -10,6 +10,9 @@ $docker-compose up -d
 $docker exec -it go-todo /bin/sh         // go-todo
 $docker exec -it mysql-container /bin/sh // mysql
 
+// run
+$docker-compose exec app go run main.go
+
 // open mysql
 // fron inside mysql-container
 $mysql -utodo -p
