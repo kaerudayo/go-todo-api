@@ -5,7 +5,7 @@ services:
     container_name: "go-todo"
     tty: true
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080:80"
     volumes:
       - ./app:/go/src/app
   mysql:
@@ -20,4 +20,4 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d
     ports:
-      - "127.0.0.1:33006:33006"
+      - "33006:3306"
