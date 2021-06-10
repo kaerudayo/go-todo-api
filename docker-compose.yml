@@ -20,4 +20,16 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d
     ports:
-      - "33006:3306"
+      - "3307:3306"
+
+  # phpMyAdmin
+  phpmyadmin:
+    container_name: php_my_admin
+    image: phpmyadmin/phpmyadmin
+    environment:
+    - PMA_ARBITRARY=1
+    - PMA_HOSTS=mysql-container
+    - PMA_USER=root
+    - PMA_PASSWORD=todo
+    ports:
+      - 8080:80
