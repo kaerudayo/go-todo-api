@@ -13,5 +13,4 @@ COPY go.mod go.sum ./
 RUN go mod download
 RUN go get github.com/cespare/reflex
 
-
 CMD reflex -r '(\.go$|go\.mod)' -s go run app/main.go

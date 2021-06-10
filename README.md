@@ -2,18 +2,20 @@
 
 ### set up
 ```
-// start up
-$docker-compose build
-$docker-compose up -d
+// server start
+$make build
+$make run
+
+// server start
+$make down
+
+// watch logs
+$make logs
 
 // go inside container
 $docker exec -it go-todo /bin/sh         // go-todo
 $docker exec -it mysql-container /bin/sh // mysql
 
-// run
-$docker-compose exec app go run main.go
-
-// open mysql
-// fron inside mysql-container
-$mysql -utodo -p
+// go mysql
+$make mysql
 ```
