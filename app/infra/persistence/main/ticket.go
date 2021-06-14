@@ -1,8 +1,8 @@
-package main
+package ticket
 
 import (
-	domain "app/app/domain/udb"
-	"domain/main/repository"
+	domain "todo/app/domain/main"
+	"todo/app/domain/main/repository"
 
 	"github.com/go-gorp/gorp"
 )
@@ -10,24 +10,25 @@ import (
 type tikcetPersistence struct{}
 
 func NewTicketPersistence() repository.TicketRepository {
-	return &ticketPersistence{}
+	return &tikcetPersistence{}
 }
 
 /**
  * method
  */
-func (tp tikcetPersistence) Insert(db gorp.SqlExecutor, ticket domain.Ticket) error {
-	stmt, err := db.Inset(ticket)
+func (tp tikcetPersistence) Add(db *gorp.DbMap, ticket domain.Ticket) error {
+	err := db.Insert(ticket)
 	if err != nil {
 		return err
 	}
 	return err
 }
 
-func (tp tikectPersistence) Get(db gorp.SqlExecutor, id int) (domain.Ticket, error) {
-	t, err := dbmap.Get(domain.Ticket{}, 1)
+func (tp tikcetPersistence) Get(db *gorp.DbMap, id int) (*domain.Ticket, error) {
+	var data domain.Ticket
+	_, err := db.Get(data, 1)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return t
+	return &data, nil
 }

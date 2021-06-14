@@ -2,7 +2,7 @@ package repository
 
 import (
 	"database/sql"
-	"domain/main"
+	main "todo/app/domain/main"
 )
 
 type EpicRepository interface {

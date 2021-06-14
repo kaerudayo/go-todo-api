@@ -30,7 +30,7 @@ func (tu TicketUsecase) Get(db gorp.SqlExecutor, id string) (domain.Ticket, erro
 	return tikcet, nil
 }
 
-func (tu TicketUsecase) INsert(db gorp.SqlExecutor, ticket domain.Ticket) error {
+func (tu TicketUsecase) Insert(db gorp.SqlExecutor, ticket domain.Ticket) error {
 	tikcet, err := tu.ticketRepository.Insert(db, ticket)
 	if err != nil {
 		return nil, err

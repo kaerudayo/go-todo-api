@@ -1,11 +1,12 @@
 package repository
 
 import (
-	"database/sql"
-	"domain/main"
+	domain "todo/app/domain/main"
+
+	"github.com/go-gorp/gorp"
 )
 
 type TicketRepository interface {
-	Get(DB *sql.DB, id int) error
-	Insert(DB *sql.DB, ticket main.Ticket) error
+	Add(db *gorp.DbMap, ticket domain.Ticket) error
+	Get(db *gorp.DbMap, id int) (*domain.Ticket, error)
 }
