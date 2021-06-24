@@ -1,5 +1,6 @@
 version: "3"
 services:
+  # go
   server:
     build: .
     tty: true
@@ -8,6 +9,7 @@ services:
     volumes:
       - ./app:/go/app
 
+ # mysql
   mysql:
     image: mysql:5.7
     container_name: "mysql-container"
@@ -33,3 +35,9 @@ services:
     - PMA_PASSWORD=todo
     ports:
       - 8080:80
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./data/redis:/data"
