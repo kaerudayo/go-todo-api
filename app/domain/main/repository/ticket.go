@@ -3,10 +3,10 @@ package repository
 import (
 	domain "todo/app/domain/main"
 
-	"github.com/go-gorp/gorp"
+	"gorm.io/gorm"
 )
 
 type TicketRepository interface {
-	Add(db *gorp.DbMap, ticket domain.Ticket) error
-	Get(db *gorp.DbMap, id int) (*domain.Ticket, error)
+	Add(db *gorm.DB, ticket domain.Ticket) error
+	Get(db *gorm.DB, id int) domain.Ticket
 }

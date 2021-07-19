@@ -23,7 +23,7 @@ func NewConfig() *Config {
 	c.DB.Production.Password = "todo"
 	c.DB.Production.DBName = "todo"
 
-	c.Routing.Port = ":3000"
+	c.Routing.Port = ":3001"
 
 	return c
 }

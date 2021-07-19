@@ -3,10 +3,10 @@ package domain
 import "time"
 
 type Ticket struct {
-	Id          int       `db:"id, primarykey"`
-	EpicId      int       `db:"epic_id"`
-	Title       string    `db:"title"`
-	Description string    `db:"description"`
-	CreatedAt   time.Time `db:"created_at"`
-	UpdatedAt   time.Time `db:"updated_at"`
+	ID          int       `gorm:"primaryKey"`
+	EpicId      int       `gorm:"column:epic_id"`
+	Title       string    `gorm:"column:title"`
+	Description string    `gorm:"column:description"`
+	CreatedAt   time.Time `gorm:"column:created_at"`
+	UpdatedAt   time.Time `gorm:"column:updated_at"`
 }

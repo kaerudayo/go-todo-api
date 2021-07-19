@@ -1,10 +1,11 @@
 package ticket
 
 import (
+	"fmt"
 	domain "todo/app/domain/main"
 	"todo/app/domain/main/repository"
 
-	"github.com/go-gorp/gorp"
+	"gorm.io/gorm"
 )
 
 type tikcetPersistence struct{}
@@ -16,19 +17,17 @@ func NewTicketPersistence() repository.TicketRepository {
 /**
  * method
  */
-func (tp tikcetPersistence) Add(db *gorp.DbMap, ticket domain.Ticket) error {
-	err := db.Insert(ticket)
+func (tp tikcetPersistence) Add(db *gorm.DB, ticket domain.Ticket) error {
+	err := db.Create(&ticket)
 	if err != nil {
-		return err
+		fmt.Println(err)
+		return nil
 	}
-	return err
+	return nil
 }
 
-func (tp tikcetPersistence) Get(db *gorp.DbMap, id int) (*domain.Ticket, error) {
+func (tp tikcetPersistence) Get(db *gorm.DB, id int) domain.Ticket {
 	var data domain.Ticket
-	_, err := db.Get(data, 1)
-	if err != nil {
-		return nil, err
-	}
-	return &data, nil
+	db.First(&data, 1)
+	return data
 }

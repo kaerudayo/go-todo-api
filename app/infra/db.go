@@ -1,18 +1,27 @@
 package infrastructure
 
 import (
-	"database/sql"
+	"fmt"
 	"log"
 
-	"github.com/go-gorp/gorp"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-func InitDb() *gorp.DbMap {
-	db, err := sql.Open("mysql", "tcp:mysql-container:3307*todo/root/todo")
+func Init(c *Config) *gorm.DB {
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		c.DB.Production.Username,
+		c.DB.Production.Password,
+		c.DB.Production.Host,
+		c.DB.Production.DBName,
+	)
+
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
 	if err != nil {
 		log.Fatal(err)
 	}
-	dbmap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{}}
 
-	return dbmap
+	return db
 }

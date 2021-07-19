@@ -1,35 +1,32 @@
 package main
 
 import (
-	"fmt"
 	domain "todo/app/domain/main"
 	infrastructure "todo/app/infra"
-	"todo/app/infra/persistence/ticket"
+	persistence "todo/app/infra/persistence/main"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-	db := infrastructure.InitDb()
-	defer db.Db.Close()
+	conf := infrastructure.NewConfig()
+	db := infrastructure.Init(conf)
 
-	u := ticket.NewTicketPersistence()
+	u := persistence.NewTicketPersistence()
 	data := domain.Ticket{
 		EpicId:      1,
 		Title:       "aaa",
 		Description: "bbbbb",
 	}
 	v := u.Add(db, data)
-	res, err := u.Get(db, 1)
-	if err != nil {
-		fmt.Println(err)
-	}
+	res := u.Get(db, 1)
+
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"data1": v,
 			"data2": res,
 		})
 	})
-	r.Run(":3000")
+	r.Run(conf.Routing.Port)
 }

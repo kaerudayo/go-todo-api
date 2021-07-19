@@ -1,7 +1,7 @@
 
 USE todo;
 
-CREATE TABLE `user`(
+CREATE TABLE `users`(
   id          BIGINT(20)   NOT NULL AUTO_INCREMENT,
   name        VARCHAR(20)  NOT NULL,
   email       VARCHAR(50)  NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `user`(
   PRIMARY KEY (id)
 );
 
-CREATE TABLE ticket(
+CREATE TABLE tickets(
   id          BIGINT(20)   NOT NULL AUTO_INCREMENT,
   epic_id     BIGINT(20)   NOT NULL,
   title       VARCHAR(40)  NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE ticket(
   PRIMARY KEY (id)
 );
 
-CREATE TABLE epic(
+CREATE TABLE epics(
   id          BIGINT(20)  NOT NULL AUTO_INCREMENT,
   title       VARCHAR(25) NOT NULL,
   color       tinyint     NOT NULL,
